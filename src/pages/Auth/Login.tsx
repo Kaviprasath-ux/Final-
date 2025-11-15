@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Eye, EyeOff, AlertCircle, Loader } from 'lucide-react';
 import { AuthLayout } from '../../components/auth/AuthLayout';
+import { useAuth } from '../../contexts/AuthContext';
 import styles from './Auth.module.css';
 
 export const Login: React.FC = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const { login } = useAuth();
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -56,9 +59,15 @@ export const Login: React.FC = () => {
     // Simulate API call
     setTimeout(() => {
       console.log('Login with:', formData, 'Remember:', rememberMe);
+
+      // Call login from AuthContext
+      login(formData.email, formData.password);
+
       setIsLoading(false);
-      // Navigate to home or dashboard
-      navigate('/');
+
+      // Get returnUrl from query params, default to home
+      const returnUrl = searchParams.get('returnUrl') || '/';
+      navigate(returnUrl);
     }, 1500);
   };
 

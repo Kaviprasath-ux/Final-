@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Calendar, Users, Minus, Plus, Sparkles, Check, ShieldCheck, MessageCircle, Phone, TrendingDown } from 'lucide-react';
 import { Room } from '../../data/roomsData';
 import { useBooking, createBookingFromRoom } from '../../contexts/BookingContext';
+import { useAuth } from '../../contexts/AuthContext';
 import styles from './BookingWidget.module.css';
 
 interface BookingWidgetProps {
@@ -12,6 +13,7 @@ interface BookingWidgetProps {
 export const BookingWidget: React.FC<BookingWidgetProps> = ({ room }) => {
   const navigate = useNavigate();
   const { setBookingData } = useBooking();
+  const { isAuthenticated } = useAuth();
   const [checkIn, setCheckIn] = useState('');
   const [checkOut, setCheckOut] = useState('');
   const [guests, setGuests] = useState(2);
@@ -53,8 +55,12 @@ export const BookingWidget: React.FC<BookingWidgetProps> = ({ room }) => {
     const bookingData = createBookingFromRoom(room, checkIn, checkOut, guests);
     setBookingData(bookingData);
 
-    // Navigate to booking review
-    navigate('/booking/review');
+    // Check authentication - redirect to login if needed, otherwise go to booking review
+    if (!isAuthenticated) {
+      navigate('/login?returnUrl=/booking/review');
+    } else {
+      navigate('/booking/review');
+    }
   };
 
   return (
