@@ -16,6 +16,15 @@ import { BookingReview } from './pages/Booking/BookingReview';
 import { BookingPayment } from './pages/Booking/BookingPayment';
 import { BookingConfirmation } from './pages/Booking/BookingConfirmation';
 import { BookingFailed } from './pages/Booking/BookingFailed';
+import { DashboardLayout } from './components/dashboard/DashboardLayout';
+import { DashboardHome } from './pages/Dashboard/DashboardHome';
+import { MyBookings } from './pages/Dashboard/MyBookings';
+import { BookingDetail } from './pages/Dashboard/BookingDetail';
+import { ProfileSettings } from './pages/Dashboard/ProfileSettings';
+import { PaymentMethods } from './pages/Dashboard/PaymentMethods';
+import { Preferences } from './pages/Dashboard/Preferences';
+import { HelpSupport } from './pages/Dashboard/HelpSupport';
+import { PreCheckIn } from './pages/Dashboard/PreCheckIn';
 
 function App() {
   return (
@@ -41,6 +50,17 @@ function App() {
             <Route path="/booking/payment" element={<BookingPayment />} />
             <Route path="/booking/confirmation/:bookingId" element={<BookingConfirmation />} />
             <Route path="/booking/failed" element={<BookingFailed />} />
+
+            {/* Dashboard */}
+            <Route path="/dashboard" element={<DashboardLayout><DashboardHome /></DashboardLayout>} />
+            <Route path="/dashboard/bookings" element={<DashboardLayout><MyBookings /></DashboardLayout>} />
+            <Route path="/dashboard/bookings/:id" element={<DashboardLayout><BookingDetail /></DashboardLayout>} />
+            <Route path="/dashboard/pre-check-in" element={<DashboardLayout><PreCheckIn /></DashboardLayout>} />
+            <Route path="/dashboard/pre-check-in/:bookingId" element={<DashboardLayout><PreCheckIn /></DashboardLayout>} />
+            <Route path="/dashboard/profile" element={<DashboardLayout><ProfileSettings /></DashboardLayout>} />
+            <Route path="/dashboard/payments" element={<DashboardLayout><PaymentMethods /></DashboardLayout>} />
+            <Route path="/dashboard/preferences" element={<DashboardLayout><Preferences /></DashboardLayout>} />
+            <Route path="/dashboard/help" element={<DashboardLayout><HelpSupport /></DashboardLayout>} />
           </Routes>
         </Router>
       </BookingProvider>
