@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Calendar, Users, Minus, Plus, Sparkles, Check, ShieldCheck, MessageCircle, Phone, TrendingDown } from 'lucide-react';
 import { Room } from '../../data/roomsData';
+import { useBooking, createBookingFromRoom } from '../../contexts/BookingContext';
 import styles from './BookingWidget.module.css';
 
 interface BookingWidgetProps {
@@ -8,6 +10,8 @@ interface BookingWidgetProps {
 }
 
 export const BookingWidget: React.FC<BookingWidgetProps> = ({ room }) => {
+  const navigate = useNavigate();
+  const { setBookingData } = useBooking();
   const [checkIn, setCheckIn] = useState('');
   const [checkOut, setCheckOut] = useState('');
   const [guests, setGuests] = useState(2);
@@ -37,6 +41,21 @@ export const BookingWidget: React.FC<BookingWidgetProps> = ({ room }) => {
   const minCheckOut = checkIn
     ? new Date(new Date(checkIn).getTime() + 86400000).toISOString().split('T')[0]
     : minCheckIn;
+
+  const handleBookNow = () => {
+    // Ensure dates are selected
+    if (!checkIn || !checkOut) {
+      alert('Please select check-in and check-out dates');
+      return;
+    }
+
+    // Create booking data from current room and selections
+    const bookingData = createBookingFromRoom(room, checkIn, checkOut, guests);
+    setBookingData(bookingData);
+
+    // Navigate to booking review
+    navigate('/booking/review');
+  };
 
   return (
     <div className={styles.bookingWidget}>
@@ -149,7 +168,7 @@ export const BookingWidget: React.FC<BookingWidgetProps> = ({ room }) => {
         </div>
 
         {/* Book Now Button */}
-        <button className={styles.bookButton}>BOOK NOW</button>
+        <button className={styles.bookButton} onClick={handleBookNow}>BOOK NOW</button>
 
         {/* Additional Info */}
         <div className={styles.bookingInfo}>
