@@ -29,7 +29,7 @@
   background: linear-gradient(
     135deg,
     rgba(26, 26, 26, 0.5) 0%,
-    rgba(165, 120, 101, 0.4) 50%,
+    rgba(165, 120, 101, 0.3) 50%,
     rgba(26, 26, 26, 0.6) 100%
   );
   z-index: 2;
@@ -47,7 +47,7 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 10px 20px;
+  padding: 12px 24px;
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -63,12 +63,19 @@
 
 .heroTitle {
   font-size: 72px;
-  font-weight: 300;
+  font-weight: 700;
   line-height: 1.15;
   color: white;
   letter-spacing: -1px;
   text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   margin: 0 0 32px;
+}
+
+.gradientText {
+  background: linear-gradient(135deg, #A57865 0%, #C8A896 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .heroSubtitle {
@@ -84,13 +91,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 16px;
+  gap: 24px;
   flex-wrap: wrap;
   margin-bottom: 48px;
 }
 
 .ctaPrimary {
-  padding: 18px 48px;
+  padding: 20px 56px;
   background: white;
   color: var(--text-primary);
   font-size: 15px;
@@ -102,14 +109,13 @@
   cursor: pointer;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   transition: all 300ms ease;
-}
-
-.ctaPrimary:hover {
-  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .ctaSecondary {
-  padding: 18px 48px;
+  padding: 20px 56px;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -122,6 +128,9 @@
   border-radius: 100px;
   cursor: pointer;
   transition: all 300ms ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .ctaSecondary:hover {
@@ -133,8 +142,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 24px;
-  padding: 20px 32px;
+  gap: 28px;
+  padding: 24px 40px;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -147,9 +156,9 @@
 .featureItem {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   color: white;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 500;
 }
 
@@ -167,16 +176,38 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
-  color: white;
+  gap: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  pointer-events: none;
 }
 
-.scrollIndicator span {
+.scrollText {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+.scrollText span {
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 2px;
-  opacity: 0.8;
+}
+
+.scrollSparkle {
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
 }
 
 /* Tablet */
@@ -209,14 +240,16 @@
   .heroCta {
     flex-direction: column;
     width: 100%;
+    gap: 16px;
   }
 
   .ctaPrimary,
   .ctaSecondary {
     width: 100%;
     max-width: 320px;
-    padding: 16px 40px;
+    padding: 18px 48px;
     font-size: 14px;
+    justify-content: center;
   }
 
   .featuresStrip {

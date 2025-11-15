@@ -3,7 +3,7 @@ import { motion, useScroll } from 'framer-motion';
 import { staggerContainer, fadeInUp } from '../../utils/animations';
 import styles from './Navbar.module.css';
 
-const menuItems = ['Experiences', 'Properties', 'Destinations', 'About'];
+const menuItems = ['Home', 'Rooms', 'Amenities', 'Pre-Check-In', 'Contact'];
 
 export const Navbar: React.FC = () => {
   const { scrollY } = useScroll();
