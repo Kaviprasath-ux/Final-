@@ -1,13 +1,21 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { motion, useScroll } from 'framer-motion';
 import { staggerContainer, fadeInUp } from '../../utils/animations';
 import styles from './Navbar.module.css';
 
-const menuItems = ['Home', 'Rooms', 'Amenities', 'Pre-Check-In', 'Contact'];
+const menuItems = [
+  { label: 'Home', path: '/' },
+  { label: 'Rooms', path: '/rooms' },
+  { label: 'Amenities', path: '/#amenities' },
+  { label: 'Pre-Check-In', path: '/#pre-checkin' },
+  { label: 'Contact', path: '/#contact' }
+];
 
 export const Navbar: React.FC = () => {
   const { scrollY } = useScroll();
   const [isScrolled, setIsScrolled] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     return scrollY.on('change', (latest) => {
@@ -42,12 +50,16 @@ export const Navbar: React.FC = () => {
         >
           {menuItems.map((item) => (
             <motion.li
-              key={item}
+              key={item.label}
               variants={fadeInUp}
               whileHover={{ y: -2 }}
               transition={{ duration: 0.2 }}
             >
-              <a href={`#${item.toLowerCase()}`}>{item}</a>
+              {item.path.startsWith('/#') ? (
+                <a href={item.path}>{item.label}</a>
+              ) : (
+                <Link to={item.path}>{item.label}</Link>
+              )}
             </motion.li>
           ))}
         </motion.ul>
