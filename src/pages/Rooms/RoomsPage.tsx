@@ -4,9 +4,8 @@ import { HotelFooter } from '../../components/sections/HotelFooter';
 import { RoomsHero } from '../../components/sections/RoomsHero';
 import { RoomsSidebar } from '../../components/sections/RoomsSidebar';
 import { RoomsGrid } from '../../components/sections/RoomsGrid';
-import { RoomDetailModal } from '../../components/sections/RoomDetailModal';
 import { FixedAIChatBubble } from '../../components/sections/FixedAIChatBubble';
-import { roomsData, Room } from '../../data/roomsData';
+import { roomsData } from '../../data/roomsData';
 import { X } from 'lucide-react';
 import styles from './RoomsPage.module.css';
 
@@ -20,7 +19,6 @@ export interface FilterState {
 }
 
 export const RoomsPage: React.FC = () => {
-  const [selectedRoom, setSelectedRoom] = useState<Room | null>(null);
   const [filters, setFilters] = useState<FilterState>({
     checkIn: '',
     checkOut: '',
@@ -180,7 +178,6 @@ export const RoomsPage: React.FC = () => {
             {/* Rooms Grid */}
             <RoomsGrid
               rooms={sortedRooms}
-              onSelectRoom={setSelectedRoom}
             />
           </div>
         </div>
@@ -188,13 +185,6 @@ export const RoomsPage: React.FC = () => {
 
       <HotelFooter />
       <FixedAIChatBubble />
-
-      {selectedRoom && (
-        <RoomDetailModal
-          room={selectedRoom}
-          onClose={() => setSelectedRoom(null)}
-        />
-      )}
     </div>
   );
 };

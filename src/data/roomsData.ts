@@ -1,5 +1,6 @@
 export interface Room {
   id: string;
+  slug: string; // URL-friendly identifier
   name: string;
   category: 'DELUXE' | 'SUITE' | 'VILLA' | 'PENTHOUSE' | 'STUDIO';
   price: number;
@@ -26,6 +27,7 @@ export interface Room {
 export const roomsData: Room[] = [
   {
     id: 'deluxe-ocean-view',
+    slug: 'deluxe-ocean-view',
     name: 'Deluxe Ocean View',
     category: 'DELUXE',
     price: 299,
@@ -78,6 +80,7 @@ export const roomsData: Room[] = [
   },
   {
     id: 'premium-suite',
+    slug: 'premium-suite',
     name: 'Premium Suite',
     category: 'SUITE',
     price: 499,
@@ -137,6 +140,7 @@ export const roomsData: Room[] = [
   },
   {
     id: 'penthouse',
+    slug: 'penthouse',
     name: 'Penthouse',
     category: 'PENTHOUSE',
     price: 899,
@@ -198,6 +202,7 @@ export const roomsData: Room[] = [
   },
   {
     id: 'garden-villa',
+    slug: 'garden-villa',
     name: 'Garden Villa',
     category: 'VILLA',
     price: 649,
@@ -252,6 +257,7 @@ export const roomsData: Room[] = [
   },
   {
     id: 'beach-villa',
+    slug: 'beach-villa',
     name: 'Beach Villa',
     category: 'VILLA',
     price: 799,
@@ -308,6 +314,7 @@ export const roomsData: Room[] = [
   },
   {
     id: 'family-suite',
+    slug: 'family-suite',
     name: 'Family Suite',
     category: 'SUITE',
     price: 549,
@@ -363,6 +370,7 @@ export const roomsData: Room[] = [
   },
   {
     id: 'honeymoon-suite',
+    slug: 'honeymoon-suite',
     name: 'Honeymoon Suite',
     category: 'SUITE',
     price: 699,
@@ -417,6 +425,7 @@ export const roomsData: Room[] = [
   },
   {
     id: 'junior-suite',
+    slug: 'junior-suite',
     name: 'Junior Suite',
     category: 'SUITE',
     price: 399,
@@ -467,6 +476,7 @@ export const roomsData: Room[] = [
   },
   {
     id: 'executive-suite',
+    slug: 'executive-suite',
     name: 'Executive Suite',
     category: 'SUITE',
     price: 599,
@@ -520,6 +530,7 @@ export const roomsData: Room[] = [
   },
   {
     id: 'royal-suite',
+    slug: 'royal-suite',
     name: 'Royal Suite',
     category: 'PENTHOUSE',
     price: 1299,
@@ -579,6 +590,7 @@ export const roomsData: Room[] = [
   },
   {
     id: 'studio-room',
+    slug: 'studio-room',
     name: 'Studio Room',
     category: 'STUDIO',
     price: 249,
@@ -626,6 +638,7 @@ export const roomsData: Room[] = [
   },
   {
     id: 'corner-suite',
+    slug: 'corner-suite',
     name: 'Corner Suite',
     category: 'SUITE',
     price: 749,

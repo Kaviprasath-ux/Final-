@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Bed, Maximize, Eye, Users, Check, Sparkles, TrendingDown, ArrowRight, Camera } from 'lucide-react';
 import { Room } from '../../data/roomsData';
@@ -6,10 +7,10 @@ import styles from './RoomsGrid.module.css';
 
 interface RoomsGridProps {
   rooms: Room[];
-  onSelectRoom: (room: Room) => void;
 }
 
-export const RoomsGrid: React.FC<RoomsGridProps> = ({ rooms, onSelectRoom }) => {
+export const RoomsGrid: React.FC<RoomsGridProps> = ({ rooms }) => {
+  const navigate = useNavigate();
   if (rooms.length === 0) {
     return (
       <div className={styles.emptyState}>
@@ -133,7 +134,7 @@ export const RoomsGrid: React.FC<RoomsGridProps> = ({ rooms, onSelectRoom }) => 
 
                   <button
                     className={styles.viewDetailsButton}
-                    onClick={() => onSelectRoom(room)}
+                    onClick={() => navigate(`/rooms/${room.slug}`)}
                   >
                     View Details
                     <ArrowRight size={16} />
