@@ -17,9 +17,6 @@ export const HotelHeroSection: React.FC = () => {
     });
   }, [scrollY]);
 
-  // Split title words for sequential animation
-  const titleWords = ['Experience', 'AI-Powered', 'Hospitality'];
-
   return (
     <section className={styles.hero}>
       {/* Animated Background with Parallax */}
@@ -46,28 +43,19 @@ export const HotelHeroSection: React.FC = () => {
           <span>Powered by Glimmora AI</span>
         </motion.div>
 
-        <h1 className={styles.heroTitle}>
-          {titleWords.map((word, index) => (
-            <motion.span
-              key={word}
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                delay: 0.4 + index * 0.2,
-                duration: 0.8,
-                ease: [0.6, -0.05, 0.01, 0.99]
-              }}
-              className={word === 'AI-Powered' ? styles.gradientText : ''}
-            >
-              {word}{index < titleWords.length - 1 ? ' ' : ''}
-            </motion.span>
-          ))}
-        </h1>
+        <motion.h1
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.8 }}
+          className={styles.heroTitle}
+        >
+          Experience AI-Powered Hospitality
+        </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.0, duration: 0.8 }}
+          transition={{ delay: 0.6, duration: 0.8 }}
           className={styles.heroSubtitle}
         >
           Skip the front desk, unlock with your phone, experience seamless AI service
@@ -76,91 +64,29 @@ export const HotelHeroSection: React.FC = () => {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2, duration: 0.8 }}
+          transition={{ delay: 0.8, duration: 0.8 }}
           className={styles.heroCta}
         >
           <motion.button
-            whileHover={{
-              scale: 1.05,
-              y: -4,
-              boxShadow: '0 0 30px rgba(165, 120, 101, 0.5)'
-            }}
+            whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.98 }}
             className={styles.ctaPrimary}
           >
-            CHECK AVAILABILITY
-            <ArrowRight size={20} />
+            Check Availability
+            <ArrowRight size={18} />
           </motion.button>
 
           <motion.button
-            whileHover={{
-              scale: 1.05,
-              boxShadow: '0 0 30px rgba(255, 255, 255, 0.3)'
-            }}
+            whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.98 }}
             className={styles.ctaSecondary}
           >
-            <Check size={20} />
-            START PRE-CHECK-IN
+            <Check size={18} />
+            Start Pre-Check-In
           </motion.button>
         </motion.div>
 
-        {/* Features Strip with Pulse Animation */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.4, duration: 0.8 }}
-          className={styles.featuresStrip}
-        >
-          <motion.div
-            className={styles.featureItem}
-            animate={{
-              scale: [1, 1.02, 1],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              repeatDelay: 1
-            }}
-          >
-            <Sparkles size={16} />
-            <span>AI Pre-Check-In</span>
-          </motion.div>
-          <div className={styles.featureDivider} />
-          <motion.div
-            className={styles.featureItem}
-            animate={{
-              scale: [1, 1.02, 1],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              repeatDelay: 1,
-              delay: 0.3
-            }}
-          >
-            <Sparkles size={16} />
-            <span>Digital Keys</span>
-          </motion.div>
-          <div className={styles.featureDivider} />
-          <motion.div
-            className={styles.featureItem}
-            animate={{
-              scale: [1, 1.02, 1],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              repeatDelay: 1,
-              delay: 0.6
-            }}
-          >
-            <Sparkles size={16} />
-            <span>24/7 AI Assistant</span>
-          </motion.div>
-        </motion.div>
-
-        {/* Enhanced Scroll Indicator */}
+        {/* Scroll Indicator */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: showScrollIndicator ? 1 : 0 }}
@@ -168,18 +94,14 @@ export const HotelHeroSection: React.FC = () => {
           className={styles.scrollIndicator}
         >
           <motion.div
-            animate={{ y: [0, 12, 0] }}
+            animate={{ y: [0, 10, 0] }}
             transition={{
-              duration: 1.5,
+              duration: 2,
               repeat: Infinity,
               ease: 'easeInOut'
             }}
           >
-            <ChevronDown size={28} />
-          </motion.div>
-          <motion.div className={styles.scrollText}>
-            <Sparkles size={14} className={styles.scrollSparkle} />
-            <span>Scroll to explore</span>
+            <ChevronDown size={24} />
           </motion.div>
         </motion.div>
       </div>
