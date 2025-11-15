@@ -30,105 +30,113 @@ export const RoomSearchFilters: React.FC<RoomSearchFiltersProps> = ({
     <>
       <div className={styles.filterContainer}>
         <div className={styles.filterContent}>
-          {/* Desktop Filters */}
+          {/* Desktop Filters - Single Row */}
           <div className={styles.desktopFilters}>
-            {/* Dates */}
-            <div className={styles.filterGroup}>
-              <label>Dates</label>
-              <div className={styles.dateInputs}>
-                <div className={styles.inputWrapper}>
-                  <Calendar size={18} className={styles.icon} />
-                  <input
-                    type="date"
-                    value={filters.checkIn}
-                    onChange={(e) => handleFilterChange('checkIn', e.target.value)}
-                    className={styles.input}
-                    placeholder="Check-in"
-                  />
-                </div>
-                <div className={styles.inputWrapper}>
-                  <Calendar size={18} className={styles.icon} />
-                  <input
-                    type="date"
-                    value={filters.checkOut}
-                    onChange={(e) => handleFilterChange('checkOut', e.target.value)}
-                    className={styles.input}
-                    placeholder="Check-out"
-                  />
-                </div>
-              </div>
+            {/* Check-in */}
+            <div className={styles.inputWrapper}>
+              <Calendar size={16} className={styles.icon} />
+              <input
+                type="date"
+                value={filters.checkIn}
+                onChange={(e) => handleFilterChange('checkIn', e.target.value)}
+                className={styles.input}
+                placeholder="Check-in"
+              />
+            </div>
+
+            {/* Check-out */}
+            <div className={styles.inputWrapper}>
+              <Calendar size={16} className={styles.icon} />
+              <input
+                type="date"
+                value={filters.checkOut}
+                onChange={(e) => handleFilterChange('checkOut', e.target.value)}
+                className={styles.input}
+                placeholder="Check-out"
+              />
             </div>
 
             {/* Guests */}
-            <div className={styles.filterGroup}>
-              <label>Guests</label>
-              <div className={styles.inputWrapper}>
-                <Users size={18} className={styles.icon} />
-                <select
-                  value={filters.guests}
-                  onChange={(e) => handleFilterChange('guests', Number(e.target.value))}
-                  className={styles.select}
-                >
-                  {guestOptions.map(num => (
-                    <option key={num} value={num}>
-                      {num} {num === 1 ? 'Guest' : 'Guests'}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-
-            {/* Room Type */}
-            <div className={styles.filterGroup}>
-              <label>Room Type</label>
+            <div className={styles.inputWrapper}>
+              <Users size={16} className={styles.icon} />
               <select
-                value={filters.roomType}
-                onChange={(e) => handleFilterChange('roomType', e.target.value)}
+                value={filters.guests}
+                onChange={(e) => handleFilterChange('guests', Number(e.target.value))}
                 className={styles.select}
               >
-                {roomTypes.map(type => (
-                  <option key={type} value={type}>{type}</option>
+                {guestOptions.map(num => (
+                  <option key={num} value={num}>
+                    {num} {num === 1 ? 'Guest' : 'Guests'}
+                  </option>
                 ))}
               </select>
             </div>
 
+            {/* Room Type */}
+            <select
+              value={filters.roomType}
+              onChange={(e) => handleFilterChange('roomType', e.target.value)}
+              className={styles.select}
+            >
+              {roomTypes.map(type => (
+                <option key={type} value={type}>{type}</option>
+              ))}
+            </select>
+
             {/* Price Range */}
-            <div className={styles.filterGroup}>
-              <label>Price Range</label>
-              <div className={styles.priceRange}>
-                <input
-                  type="range"
-                  min="0"
-                  max="2000"
-                  value={filters.priceRange[1]}
-                  onChange={(e) => handleFilterChange('priceRange', [0, Number(e.target.value)])}
-                  className={styles.rangeSlider}
-                />
-                <div className={styles.priceDisplay}>
-                  ${filters.priceRange[0]} - ${filters.priceRange[1]}
-                </div>
+            <div className={styles.priceRangeWrapper}>
+              <input
+                type="range"
+                min="0"
+                max="2000"
+                value={filters.priceRange[1]}
+                onChange={(e) => handleFilterChange('priceRange', [0, Number(e.target.value)])}
+                className={styles.rangeSlider}
+              />
+              <div className={styles.priceDisplay}>
+                ${filters.priceRange[0]}-${filters.priceRange[1]}
               </div>
             </div>
 
             {/* Sort */}
-            <div className={styles.filterGroup}>
-              <label>Sort by</label>
-              <select
-                value={filters.sortBy}
-                onChange={(e) => handleFilterChange('sortBy', e.target.value)}
-                className={styles.select}
-              >
-                {sortOptions.map(option => (
-                  <option key={option} value={option}>{option}</option>
-                ))}
-              </select>
-            </div>
+            <select
+              value={filters.sortBy}
+              onChange={(e) => handleFilterChange('sortBy', e.target.value)}
+              className={styles.select}
+            >
+              {sortOptions.map(option => (
+                <option key={option} value={option}>{option}</option>
+              ))}
+            </select>
 
             {/* Search Button */}
             <button className={styles.searchButton}>
-              <Search size={18} />
-              Update Results
+              <Search size={16} />
+              Update
             </button>
+
+            {/* Results Count */}
+            <div className={styles.resultCount}>
+              {resultCount} room{resultCount !== 1 ? 's' : ''}
+            </div>
+
+            {/* View Toggle */}
+            <div className={styles.viewToggle}>
+              <button
+                className={`${styles.viewButton} ${viewMode === 'grid' ? styles.active : ''}`}
+                onClick={() => setViewMode('grid')}
+                aria-label="Grid view"
+              >
+                <Grid3x3 size={16} />
+              </button>
+              <button
+                className={`${styles.viewButton} ${viewMode === 'list' ? styles.active : ''}`}
+                onClick={() => setViewMode('list')}
+                aria-label="List view"
+              >
+                <List size={16} />
+              </button>
+            </div>
           </div>
 
           {/* Mobile Filter Button */}
@@ -139,29 +147,10 @@ export const RoomSearchFilters: React.FC<RoomSearchFiltersProps> = ({
             <SlidersHorizontal size={20} />
             Filters
           </button>
-        </div>
 
-        {/* Results Row */}
-        <div className={styles.resultsRow}>
-          <div className={styles.resultCount}>
+          {/* Mobile Results Count */}
+          <div className={styles.mobileResultCount}>
             {resultCount} room{resultCount !== 1 ? 's' : ''} available
-          </div>
-
-          <div className={styles.viewToggle}>
-            <button
-              className={`${styles.viewButton} ${viewMode === 'grid' ? styles.active : ''}`}
-              onClick={() => setViewMode('grid')}
-              aria-label="Grid view"
-            >
-              <Grid3x3 size={18} />
-            </button>
-            <button
-              className={`${styles.viewButton} ${viewMode === 'list' ? styles.active : ''}`}
-              onClick={() => setViewMode('list')}
-              aria-label="List view"
-            >
-              <List size={18} />
-            </button>
           </div>
         </div>
       </div>
@@ -195,7 +184,6 @@ export const RoomSearchFilters: React.FC<RoomSearchFiltersProps> = ({
               </div>
 
               <div className={styles.drawerContent}>
-                {/* Same filters as desktop but vertical layout */}
                 <div className={styles.mobileFilterGroup}>
                   <label>Check-in</label>
                   <input
@@ -285,3 +273,4 @@ export const RoomSearchFilters: React.FC<RoomSearchFiltersProps> = ({
     </>
   );
 };
+
