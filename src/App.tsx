@@ -1,9 +1,9 @@
 import React from 'react';
 import './styles/global.css';
-import { HomePage } from './pages/Home/HomePage';
+import { HotelHomePage } from './pages/Home/HotelHomePage';
 
 function App() {
-  return <HomePage />;
+  return <HotelHomePage />;
 }
 
 export default App;
