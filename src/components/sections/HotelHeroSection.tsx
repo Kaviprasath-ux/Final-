@@ -101,7 +101,7 @@ export const HotelHeroSection: React.FC = () => {
               ease: 'easeInOut'
             }}
           >
-            <ChevronDown size={24} />
+            <ChevronDown size={28} />
           </motion.div>
         </motion.div>
       </div>

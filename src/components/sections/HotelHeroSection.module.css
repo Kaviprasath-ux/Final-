@@ -28,9 +28,9 @@
   height: 100%;
   background: linear-gradient(
     135deg,
-    rgba(26, 26, 26, 0.6) 0%,
-    rgba(165, 120, 101, 0.4) 50%,
-    rgba(26, 26, 26, 0.65) 100%
+    rgba(0, 0, 0, 0.65) 0%,
+    rgba(20, 20, 20, 0.45) 50%,
+    rgba(0, 0, 0, 0.7) 100%
   );
   z-index: 2;
 }
@@ -48,10 +48,10 @@
   align-items: center;
   gap: 8px;
   padding: 12px 24px;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: 100px;
   color: white;
   font-size: 13px;
@@ -78,6 +78,7 @@
   color: rgba(255, 255, 255, 0.95);
   max-width: 700px;
   margin: 0 auto 56px;
+  text-decoration: none;
 }
 
 .heroCta {
@@ -91,7 +92,7 @@
 .ctaPrimary {
   padding: 18px 48px;
   background: white;
-  color: var(--text-primary);
+  color: #2C2C2C;
   font-size: 15px;
   font-weight: 600;
   letter-spacing: 0.5px;
@@ -106,7 +107,8 @@
 }
 
 .ctaPrimary:hover {
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.05);
+  transform: translateY(-1px);
 }
 
 .ctaSecondary {
@@ -114,7 +116,7 @@
   background: transparent;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
   color: white;
   font-size: 15px;
   font-weight: 600;
@@ -129,7 +131,9 @@
 
 .ctaSecondary:hover {
   background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.6);
+  border-color: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
 }
 
 
@@ -138,8 +142,9 @@
   bottom: 80px;
   left: 50%;
   transform: translateX(-50%);
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.8);
   pointer-events: none;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
 }
 
 /* Tablet */
