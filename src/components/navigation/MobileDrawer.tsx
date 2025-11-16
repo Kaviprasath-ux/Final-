@@ -116,7 +116,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
   const dashboardMenuItems = [
     { icon: LayoutDashboard, label: 'Dashboard', path: '/dashboard' },
     { icon: Calendar, label: 'My Bookings', path: '/dashboard/bookings' },
-    { icon: ClipboardCheck, label: 'Pre-Check-In', path: '/dashboard' },
+    { icon: ClipboardCheck, label: 'Pre-Check-In', path: '/dashboard/pre-check-in' },
     { icon: User, label: 'Profile', path: '/dashboard/profile' },
     { icon: CreditCard, label: 'Payments', path: '/dashboard/payments' },
     { icon: HelpCircle, label: 'Help', path: '/dashboard/help' },
