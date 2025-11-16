@@ -73,8 +73,12 @@ function App() {
               <Route path="/forgot-password" element={<ForgotPassword />} />
               <Route path="/reset-password" element={<ResetPassword />} />
               <Route path="/verify-email" element={<VerifyEmail />} />
-              <Route path="/booking-access" element={<BookingAccess />} />
             </Route>
+
+            {/* ================================================ */}
+            {/* BOOKING ACCESS - Standalone (custom layout)     */}
+            {/* ================================================ */}
+            <Route path="/booking-access" element={<BookingAccess />} />
 
             {/* ================================================ */}
             {/* BOOKING FLOW - Standalone (no layout)           */}

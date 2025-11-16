@@ -18,7 +18,7 @@ const MainNavigation: React.FC = () => {
   // Detect scroll position
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 0);
     };
 
     if (typeof window !== 'undefined') {
@@ -40,8 +40,7 @@ const MainNavigation: React.FC = () => {
     setShowMobileDrawer(false);
   }, [location.pathname]);
 
-  const isHomePage = location.pathname === '/';
-  const isTransparent = isHomePage && !isScrolled;
+  const isTransparent = !isScrolled;
 
   const menuItems = [
     { label: 'Home', path: '/' },
@@ -49,7 +48,7 @@ const MainNavigation: React.FC = () => {
     { label: 'Amenities', path: '/amenities' },
     {
       label: 'Pre-Check-In',
-      path: '/dashboard/pre-check-in'
+      path: isAuthenticated ? '/dashboard/pre-check-in' : '/booking-access'
     },
     { label: 'Contact', path: '/contact' },
   ];

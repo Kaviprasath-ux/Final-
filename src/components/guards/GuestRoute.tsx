@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
+import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { Loader } from 'lucide-react';
 
@@ -10,6 +10,7 @@ import { Loader } from 'lucide-react';
  */
 const GuestRoute: React.FC = () => {
   const { isAuthenticated, isLoading } = useAuth();
+  const location = useLocation();
 
   // Show loading spinner while checking auth
   if (isLoading) {
@@ -30,9 +31,11 @@ const GuestRoute: React.FC = () => {
     );
   }
 
-  // Already authenticated - redirect to dashboard
+  // Already authenticated - redirect to return url or home
   if (isAuthenticated) {
-    return <Navigate to="/dashboard" replace />;
+    const searchParams = new URLSearchParams(location.search);
+    const returnUrl = searchParams.get('returnUrl') || '/';
+    return <Navigate to={returnUrl} replace />;
   }
 
   // Not authenticated - render child routes (login/signup page)
