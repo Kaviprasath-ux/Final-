@@ -27,7 +27,6 @@ body {
   font-size: var(--fs-base);
   line-height: var(--lh-base);
   color: var(--text-primary);
-  background-color: var(--bg-primary);
   min-height: 100vh;
 }
 
