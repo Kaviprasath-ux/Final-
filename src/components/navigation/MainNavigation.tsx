@@ -49,7 +49,7 @@ const MainNavigation: React.FC = () => {
     { label: 'Amenities', path: '/amenities' },
     {
       label: 'Pre-Check-In',
-      path: isAuthenticated ? '/dashboard' : '/login?returnUrl=/dashboard'
+      path: '/dashboard/pre-check-in'
     },
     { label: 'Contact', path: '/contact' },
   ];
