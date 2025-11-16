@@ -27,6 +27,7 @@ import { Preferences } from './pages/Dashboard/Preferences';
 import { HelpSupport } from './pages/Dashboard/HelpSupport';
 import { PreCheckIn } from './pages/Dashboard/PreCheckIn';
 import { PreCheckInAuth } from './components/preCheckIn/PreCheckInAuth';
+import PublicLayout from './components/layout/PublicLayout';
 
 function App() {
   return (
@@ -34,11 +35,12 @@ function App() {
       <BookingProvider>
         <Router>
           <Routes>
-            {/* Main Pages */}
-            <Route path="/" element={<HotelHomePage />} />
-            <Route path="/rooms" element={<RoomsPage />} />
-            <Route path="/rooms/:roomSlug" element={<RoomDetailPage />} />
-            <Route path="/amenities" element={<AmenitiesPage />} />
+            {/* Main Pages - With Public Navigation */}
+            <Route path="/" element={<PublicLayout><HotelHomePage /></PublicLayout>} />
+            <Route path="/rooms" element={<PublicLayout><RoomsPage /></PublicLayout>} />
+            <Route path="/rooms/:roomSlug" element={<PublicLayout><RoomDetailPage /></PublicLayout>} />
+            <Route path="/amenities" element={<PublicLayout><AmenitiesPage /></PublicLayout>} />
+            <Route path="/contact" element={<PublicLayout><div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '24px', color: '#5C5C5C' }}>Contact Page - Coming Soon</div></PublicLayout>} />
 
             {/* Auth Pages */}
             <Route path="/login" element={<Login />} />
