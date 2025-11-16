@@ -29,6 +29,13 @@ import { HelpSupport } from './pages/Dashboard/HelpSupport';
 import { PreCheckIn } from './pages/Dashboard/PreCheckIn';
 import { PreCheckInAuth } from './components/preCheckIn/PreCheckInAuth';
 import PublicLayout from './components/layout/PublicLayout';
+import AuthLayout from './components/layout/AuthLayout';
+import ProtectedRoute from './components/guards/ProtectedRoute';
+import GuestRoute from './components/guards/GuestRoute';
+import NotFound from './pages/NotFound/NotFound';
+import AboutPage from './pages/About/AboutPage';
+import PrivacyPolicy from './pages/Legal/PrivacyPolicy';
+import TermsOfService from './pages/Legal/TermsOfService';
 
 function App() {
   return (
@@ -42,14 +49,19 @@ function App() {
             <Route path="/rooms/:roomSlug" element={<PublicLayout><RoomDetailPage /></PublicLayout>} />
             <Route path="/amenities" element={<PublicLayout><AmenitiesPage /></PublicLayout>} />
             <Route path="/contact" element={<PublicLayout><ContactPage /></PublicLayout>} />
+            <Route path="/about" element={<PublicLayout><AboutPage /></PublicLayout>} />
 
-            {/* Auth Pages */}
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="/forgot-password" element={<ForgotPassword />} />
-            <Route path="/reset-password" element={<ResetPassword />} />
-            <Route path="/verify-email" element={<VerifyEmail />} />
-            <Route path="/booking-access" element={<BookingAccess />} />
+            {/* Legal Pages */}
+            <Route path="/privacy" element={<PublicLayout showNewsletter={false}><PrivacyPolicy /></PublicLayout>} />
+            <Route path="/terms" element={<PublicLayout showNewsletter={false}><TermsOfService /></PublicLayout>} />
+
+            {/* Auth Pages - With AuthLayout */}
+            <Route path="/login" element={<AuthLayout><GuestRoute><Login /></GuestRoute></AuthLayout>} />
+            <Route path="/signup" element={<AuthLayout><GuestRoute><SignUp /></GuestRoute></AuthLayout>} />
+            <Route path="/forgot-password" element={<AuthLayout><ForgotPassword /></AuthLayout>} />
+            <Route path="/reset-password" element={<AuthLayout><ResetPassword /></AuthLayout>} />
+            <Route path="/verify-email" element={<AuthLayout><VerifyEmail /></AuthLayout>} />
+            <Route path="/booking-access" element={<AuthLayout><BookingAccess /></AuthLayout>} />
 
             {/* Booking Flow */}
             <Route path="/booking/review" element={<BookingReview />} />
@@ -60,16 +72,19 @@ function App() {
             {/* Pre-Check-In (Guest Access - No auth required, token-based) */}
             <Route path="/pre-check-in/:bookingId" element={<PreCheckInAuth />} />
 
-            {/* Dashboard */}
-            <Route path="/dashboard" element={<DashboardLayout><DashboardHome /></DashboardLayout>} />
-            <Route path="/dashboard/bookings" element={<DashboardLayout><MyBookings /></DashboardLayout>} />
-            <Route path="/dashboard/bookings/:id" element={<DashboardLayout><BookingDetail /></DashboardLayout>} />
-            <Route path="/dashboard/pre-check-in" element={<DashboardLayout><PreCheckIn /></DashboardLayout>} />
-            <Route path="/dashboard/pre-check-in/:bookingId" element={<DashboardLayout><PreCheckIn /></DashboardLayout>} />
-            <Route path="/dashboard/profile" element={<DashboardLayout><ProfileSettings /></DashboardLayout>} />
-            <Route path="/dashboard/payments" element={<DashboardLayout><PaymentMethods /></DashboardLayout>} />
-            <Route path="/dashboard/preferences" element={<DashboardLayout><Preferences /></DashboardLayout>} />
-            <Route path="/dashboard/help" element={<DashboardLayout><HelpSupport /></DashboardLayout>} />
+            {/* Dashboard - Protected Routes */}
+            <Route path="/dashboard" element={<ProtectedRoute><DashboardLayout><DashboardHome /></DashboardLayout></ProtectedRoute>} />
+            <Route path="/dashboard/bookings" element={<ProtectedRoute><DashboardLayout><MyBookings /></DashboardLayout></ProtectedRoute>} />
+            <Route path="/dashboard/bookings/:id" element={<ProtectedRoute><DashboardLayout><BookingDetail /></DashboardLayout></ProtectedRoute>} />
+            <Route path="/dashboard/pre-check-in" element={<ProtectedRoute><DashboardLayout><PreCheckIn /></DashboardLayout></ProtectedRoute>} />
+            <Route path="/dashboard/pre-check-in/:bookingId" element={<ProtectedRoute><DashboardLayout><PreCheckIn /></DashboardLayout></ProtectedRoute>} />
+            <Route path="/dashboard/profile" element={<ProtectedRoute><DashboardLayout><ProfileSettings /></DashboardLayout></ProtectedRoute>} />
+            <Route path="/dashboard/payments" element={<ProtectedRoute><DashboardLayout><PaymentMethods /></DashboardLayout></ProtectedRoute>} />
+            <Route path="/dashboard/preferences" element={<ProtectedRoute><DashboardLayout><Preferences /></DashboardLayout></ProtectedRoute>} />
+            <Route path="/dashboard/help" element={<ProtectedRoute><DashboardLayout><HelpSupport /></DashboardLayout></ProtectedRoute>} />
+
+            {/* 404 Not Found - Must be last */}
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </Router>
       </BookingProvider>
