@@ -91,7 +91,8 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
     onClose();
   };
 
-  const getInitials = (name: string): string => {
+  const getInitials = (name: string | undefined | null): string => {
+    if (!name) return 'U';
     return name
       .split(' ')
       .map(n => n[0])

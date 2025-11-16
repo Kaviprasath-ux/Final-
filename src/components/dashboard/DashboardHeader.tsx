@@ -15,7 +15,8 @@ export const DashboardHeader: React.FC = () => {
     navigate('/');
   };
 
-  const getInitials = (name: string) => {
+  const getInitials = (name: string | undefined | null): string => {
+    if (!name) return 'U';
     return name
       .split(' ')
       .map(n => n[0])

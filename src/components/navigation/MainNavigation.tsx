@@ -64,7 +64,8 @@ const MainNavigation: React.FC = () => {
     navigate('/rooms');
   };
 
-  const getInitials = (name: string): string => {
+  const getInitials = (name: string | undefined | null): string => {
+    if (!name) return 'U';
     return name
       .split(' ')
       .map(n => n[0])
