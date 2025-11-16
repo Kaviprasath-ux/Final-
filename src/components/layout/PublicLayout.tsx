@@ -1,18 +1,14 @@
 import React from 'react';
+import { Outlet } from 'react-router-dom';
 import MainNavigation from '../navigation/MainNavigation';
 import Footer from '../footer/Footer';
 
-interface PublicLayoutProps {
-  children: React.ReactNode;
-  showNewsletter?: boolean;
-}
-
-const PublicLayout: React.FC<PublicLayoutProps> = ({ children, showNewsletter = true }) => {
+const PublicLayout: React.FC = () => {
   return (
     <>
       <MainNavigation />
-      {children}
-      <Footer showNewsletter={showNewsletter} />
+      <Outlet />
+      <Footer showNewsletter={true} />
     </>
   );
 };

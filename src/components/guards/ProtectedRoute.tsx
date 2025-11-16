@@ -1,18 +1,14 @@
 import React from 'react';
-import { Navigate, useLocation } from 'react-router-dom';
+import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { Loader } from 'lucide-react';
-
-interface ProtectedRouteProps {
-  children: React.ReactNode;
-}
 
 /**
  * ProtectedRoute - Requires user to be authenticated
  * If not authenticated, redirects to login with return URL
  * Used for: Dashboard, Booking flow (when auth required)
  */
-const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
+const ProtectedRoute: React.FC = () => {
   const { isAuthenticated, isLoading } = useAuth();
   const location = useLocation();
 
@@ -42,8 +38,8 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
     return <Navigate to={`/login?returnUrl=${encodeURIComponent(returnUrl)}`} replace />;
   }
 
-  // Authenticated - render children
-  return <>{children}</>;
+  // Authenticated - render child routes
+  return <Outlet />;
 };
 
 export default ProtectedRoute;

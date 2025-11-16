@@ -1,18 +1,14 @@
 import React from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { Loader } from 'lucide-react';
-
-interface GuestRouteProps {
-  children: React.ReactNode;
-}
 
 /**
  * GuestRoute - Only accessible when NOT authenticated
  * If authenticated, redirects to dashboard
  * Used for: Login, SignUp pages
  */
-const GuestRoute: React.FC<GuestRouteProps> = ({ children }) => {
+const GuestRoute: React.FC = () => {
   const { isAuthenticated, isLoading } = useAuth();
 
   // Show loading spinner while checking auth
@@ -39,8 +35,8 @@ const GuestRoute: React.FC<GuestRouteProps> = ({ children }) => {
     return <Navigate to="/dashboard" replace />;
   }
 
-  // Not authenticated - render children (login/signup page)
-  return <>{children}</>;
+  // Not authenticated - render child routes (login/signup page)
+  return <Outlet />;
 };
 
 export default GuestRoute;

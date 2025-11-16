@@ -1,39 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Outlet } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
-import { useAuth } from '../../contexts/AuthContext';
 import { DashboardProvider } from '../../contexts/DashboardContext';
 import { DashboardHeader } from './DashboardHeader';
 import { DashboardSidebar } from './DashboardSidebar';
 import styles from './DashboardLayout.module.css';
 
-interface DashboardLayoutProps {
-  children: React.ReactNode;
-}
-
-export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
-  const navigate = useNavigate();
-  const { isAuthenticated, isLoading } = useAuth();
+export const DashboardLayout: React.FC = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-
-  useEffect(() => {
-    if (!isLoading && !isAuthenticated) {
-      navigate('/login?returnUrl=/dashboard');
-    }
-  }, [isAuthenticated, isLoading, navigate]);
-
-  if (isLoading) {
-    return (
-      <div className={styles.loadingContainer}>
-        <div className={styles.spinner} />
-        <div className={styles.loadingText}>Loading dashboard...</div>
-      </div>
-    );
-  }
-
-  if (!isAuthenticated) {
-    return null;
-  }
 
   return (
     <DashboardProvider>
@@ -64,7 +38,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) =>
 
           {/* Main Content */}
           <main className={styles.mainContent}>
-            {children}
+            <Outlet />
           </main>
         </div>
       </div>

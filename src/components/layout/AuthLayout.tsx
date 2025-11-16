@@ -1,17 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import styles from './AuthLayout.module.css';
-
-interface AuthLayoutProps {
-  children: React.ReactNode;
-}
 
 /**
  * AuthLayout - Used for authentication pages
  * Two-column layout: Brand/Image (left) + Auth Form (right)
  * Used by: Login, SignUp, ForgotPassword, etc.
  */
-const AuthLayout: React.FC<AuthLayoutProps> = ({ children }) => {
+const AuthLayout: React.FC = () => {
   return (
     <div className={styles.authLayout}>
       {/* Left Side - Brand/Image */}
@@ -56,7 +52,7 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({ children }) => {
 
           {/* Form Content */}
           <div className={styles.formContent}>
-            {children}
+            <Outlet />
           </div>
 
           {/* Back to Home Link */}
