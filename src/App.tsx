@@ -25,6 +25,7 @@ import { PaymentMethods } from './pages/Dashboard/PaymentMethods';
 import { Preferences } from './pages/Dashboard/Preferences';
 import { HelpSupport } from './pages/Dashboard/HelpSupport';
 import { PreCheckIn } from './pages/Dashboard/PreCheckIn';
+import { PreCheckInAuth } from './components/preCheckIn/PreCheckInAuth';
 
 function App() {
   return (
@@ -50,6 +51,9 @@ function App() {
             <Route path="/booking/payment" element={<BookingPayment />} />
             <Route path="/booking/confirmation/:bookingId" element={<BookingConfirmation />} />
             <Route path="/booking/failed" element={<BookingFailed />} />
+
+            {/* Pre-Check-In (Guest Access - No auth required, token-based) */}
+            <Route path="/pre-check-in/:bookingId" element={<PreCheckInAuth />} />
 
             {/* Dashboard */}
             <Route path="/dashboard" element={<DashboardLayout><DashboardHome /></DashboardLayout>} />

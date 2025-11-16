@@ -130,7 +130,19 @@ const PreCheckInSteps: React.FC<{ bookingId: string }> = ({ bookingId }) => {
   );
 };
 
-export const PreCheckInFlow: React.FC = () => {
+interface GuestSession {
+  token: string;
+  bookingId: string;
+  email: string;
+  guestName: string;
+  expiresAt: string;
+}
+
+interface PreCheckInFlowProps {
+  guestSession?: GuestSession | null;
+}
+
+export const PreCheckInFlow: React.FC<PreCheckInFlowProps> = ({ guestSession }) => {
   const { bookingId } = useParams<{ bookingId: string }>();
 
   if (!bookingId) {
