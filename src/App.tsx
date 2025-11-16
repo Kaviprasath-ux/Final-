@@ -7,6 +7,7 @@ import { HotelHomePage } from './pages/Home/HotelHomePage';
 import { RoomsPage } from './pages/Rooms/RoomsPage';
 import { RoomDetailPage } from './pages/RoomDetail/RoomDetailPage';
 import AmenitiesPage from './pages/Amenities/AmenitiesPage';
+import ContactPage from './pages/Contact/ContactPage';
 import { Login } from './pages/Auth/Login';
 import { SignUp } from './pages/Auth/SignUp';
 import { ForgotPassword } from './pages/Auth/ForgotPassword';
@@ -40,7 +41,7 @@ function App() {
             <Route path="/rooms" element={<PublicLayout><RoomsPage /></PublicLayout>} />
             <Route path="/rooms/:roomSlug" element={<PublicLayout><RoomDetailPage /></PublicLayout>} />
             <Route path="/amenities" element={<PublicLayout><AmenitiesPage /></PublicLayout>} />
-            <Route path="/contact" element={<PublicLayout><div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '24px', color: '#5C5C5C' }}>Contact Page - Coming Soon</div></PublicLayout>} />
+            <Route path="/contact" element={<PublicLayout><ContactPage /></PublicLayout>} />
 
             {/* Auth Pages */}
             <Route path="/login" element={<Login />} />
