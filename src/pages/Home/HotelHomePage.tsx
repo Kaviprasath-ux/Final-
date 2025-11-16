@@ -1,6 +1,5 @@
 import React from 'react';
 import { HotelHeroSection } from '../../components/sections/HotelHeroSection';
-import { SearchWidget } from '../../components/sections/SearchWidget';
 import { StatsSection } from '../../components/sections/StatsSection';
 import { LuxuryAmenities } from '../../components/sections/LuxuryAmenities';
 import { RoomsSection } from '../../components/sections/RoomsSection';
@@ -17,11 +16,8 @@ import styles from './HotelHomePage.module.css';
 export const HotelHomePage: React.FC = () => {
   return (
     <div className={styles.hotelHomePage}>
-      {/* Hero with immersive full-screen experience */}
+      {/* Hero with integrated functional search bar */}
       <HotelHeroSection />
-
-      {/* Floating search widget for quick bookings */}
-      <SearchWidget />
 
       {/* Social proof and trust indicators */}
       <StatsSection />
