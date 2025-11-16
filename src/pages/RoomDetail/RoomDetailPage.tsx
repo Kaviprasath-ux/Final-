@@ -5,8 +5,6 @@ import {
   ArrowLeft, ChevronRight, Bed, Maximize, Users, Eye, Check,
   Sparkles, Clock, Baby, Dog, Cigarette, XCircle, Star
 } from 'lucide-react';
-import { Navbar } from '../../components/sections/Navbar';
-import { HotelFooter } from '../../components/sections/HotelFooter';
 import { FixedAIChatBubble } from '../../components/sections/FixedAIChatBubble';
 import { RoomImageGallery } from '../../components/sections/RoomImageGallery';
 import { BookingWidget } from '../../components/sections/BookingWidget';
@@ -47,7 +45,6 @@ export const RoomDetailPage: React.FC = () => {
 
   return (
     <div className={styles.roomDetailPage}>
-      <Navbar />
 
       {/* Breadcrumbs */}
       <div className={styles.breadcrumbContainer}>
@@ -268,7 +265,6 @@ export const RoomDetailPage: React.FC = () => {
         </div>
       )}
 
-      <HotelFooter />
       <FixedAIChatBubble />
     </div>
   );

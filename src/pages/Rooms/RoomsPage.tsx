@@ -1,6 +1,4 @@
 import React, { useState, useMemo } from 'react';
-import { Navbar } from '../../components/sections/Navbar';
-import { HotelFooter } from '../../components/sections/HotelFooter';
 import { RoomsHero } from '../../components/sections/RoomsHero';
 import { RoomsSidebar } from '../../components/sections/RoomsSidebar';
 import { RoomsGrid } from '../../components/sections/RoomsGrid';
@@ -135,7 +133,6 @@ export const RoomsPage: React.FC = () => {
 
   return (
     <div className={styles.roomsPage}>
-      <Navbar />
       <RoomsHero />
 
       {/* Sidebar + Content Layout */}
@@ -183,7 +180,6 @@ export const RoomsPage: React.FC = () => {
         </div>
       </div>
 
-      <HotelFooter />
       <FixedAIChatBubble />
     </div>
   );
