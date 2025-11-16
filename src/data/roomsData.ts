@@ -4,6 +4,7 @@ export interface Room {
   name: string;
   category: 'DELUXE' | 'SUITE' | 'VILLA' | 'PENTHOUSE' | 'STUDIO';
   price: number;
+  originalPrice?: number; // For showing discounts
   description: string;
   fullDescription: string[];
   images: string[];
@@ -22,6 +23,10 @@ export interface Room {
     text: string;
   };
   availability: 'HIGH' | 'MEDIUM' | 'LOW';
+  rating?: {
+    score: number; // 0-5
+    count: number; // Number of reviews
+  };
 }
 
 export const roomsData: Room[] = [
@@ -76,7 +81,11 @@ export const roomsData: Room[] = [
     bedType: 'King Bed',
     viewType: 'Ocean View',
     isAIRecommended: true,
-    availability: 'MEDIUM'
+    availability: 'MEDIUM',
+    rating: {
+      score: 4.8,
+      count: 124
+    }
   },
   {
     id: 'premium-suite',
@@ -136,7 +145,11 @@ export const roomsData: Room[] = [
       type: 'BEST_VALUE',
       text: 'BEST VALUE'
     },
-    availability: 'HIGH'
+    availability: 'HIGH',
+    rating: {
+      score: 4.9,
+      count: 203
+    }
   },
   {
     id: 'penthouse',
@@ -198,7 +211,12 @@ export const roomsData: Room[] = [
       type: 'DISCOUNT',
       text: '15% OFF'
     },
-    availability: 'LOW'
+    availability: 'LOW',
+    originalPrice: 1059,
+    rating: {
+      score: 5.0,
+      count: 87
+    }
   },
   {
     id: 'garden-villa',
@@ -310,7 +328,11 @@ export const roomsData: Room[] = [
     bedType: 'King Bed',
     viewType: 'Beachfront',
     isAIRecommended: true,
-    availability: 'LOW'
+    availability: 'LOW',
+    rating: {
+      score: 4.7,
+      count: 156
+    }
   },
   {
     id: 'family-suite',
