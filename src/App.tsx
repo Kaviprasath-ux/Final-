@@ -6,6 +6,7 @@ import { BookingProvider } from './contexts/BookingContext';
 import { HotelHomePage } from './pages/Home/HotelHomePage';
 import { RoomsPage } from './pages/Rooms/RoomsPage';
 import { RoomDetailPage } from './pages/RoomDetail/RoomDetailPage';
+import AmenitiesPage from './pages/Amenities/AmenitiesPage';
 import { Login } from './pages/Auth/Login';
 import { SignUp } from './pages/Auth/SignUp';
 import { ForgotPassword } from './pages/Auth/ForgotPassword';
@@ -37,6 +38,7 @@ function App() {
             <Route path="/" element={<HotelHomePage />} />
             <Route path="/rooms" element={<RoomsPage />} />
             <Route path="/rooms/:roomSlug" element={<RoomDetailPage />} />
+            <Route path="/amenities" element={<AmenitiesPage />} />
 
             {/* Auth Pages */}
             <Route path="/login" element={<Login />} />
