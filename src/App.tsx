@@ -28,6 +28,7 @@ import { Preferences } from './pages/Dashboard/Preferences';
 import { HelpSupport } from './pages/Dashboard/HelpSupport';
 import { PreCheckIn } from './pages/Dashboard/PreCheckIn';
 import { PreCheckInAuth } from './components/preCheckIn/PreCheckInAuth';
+import PreCheckInPortal from './pages/Dashboard/PreCheckInPortal';
 import PublicLayout from './components/layout/PublicLayout';
 import AuthLayout from './components/layout/AuthLayout';
 import ProtectedRoute from './components/guards/ProtectedRoute';
@@ -76,7 +77,7 @@ function App() {
             <Route path="/dashboard" element={<ProtectedRoute><DashboardLayout><DashboardHome /></DashboardLayout></ProtectedRoute>} />
             <Route path="/dashboard/bookings" element={<ProtectedRoute><DashboardLayout><MyBookings /></DashboardLayout></ProtectedRoute>} />
             <Route path="/dashboard/bookings/:id" element={<ProtectedRoute><DashboardLayout><BookingDetail /></DashboardLayout></ProtectedRoute>} />
-            <Route path="/dashboard/pre-check-in" element={<ProtectedRoute><DashboardLayout><PreCheckIn /></DashboardLayout></ProtectedRoute>} />
+            <Route path="/dashboard/pre-check-in" element={<ProtectedRoute><DashboardLayout><PreCheckInPortal /></DashboardLayout></ProtectedRoute>} />
             <Route path="/dashboard/pre-check-in/:bookingId" element={<ProtectedRoute><DashboardLayout><PreCheckIn /></DashboardLayout></ProtectedRoute>} />
             <Route path="/dashboard/profile" element={<ProtectedRoute><DashboardLayout><ProfileSettings /></DashboardLayout></ProtectedRoute>} />
             <Route path="/dashboard/payments" element={<ProtectedRoute><DashboardLayout><PaymentMethods /></DashboardLayout></ProtectedRoute>} />
